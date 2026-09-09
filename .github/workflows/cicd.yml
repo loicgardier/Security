@@ -14,10 +14,8 @@ jobs:
           - name: Bandit
             run: pip install bandit  && bandit -r ./
           - name: Prepare postgres
-            run: docker run --name postgres -e POSTGRES_PASSWORD=postgres -d postgres 
-          - name: Prepare postgres
             env:
                 PGPASSWORD: postgres
-            run: psql -c 'CREATE DATABASE API' --dbname=postgres --host=postgres --username=postgres -w
+            run: psql -c 'CREATE DATABASE API' --dbname=postgres --host=localhost --username=postgres -w
           - name: Prepare db
             run: pip install alembic && alembic upgrade head
