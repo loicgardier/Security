@@ -25,5 +25,7 @@ jobs:
             env:
                 PGPASSWORD: postgres
             run: psql -c 'CREATE DATABASE API' --dbname=postgres --host=localhost --username=postgres -w
-          - name: Prepare db
-            run: pip install -r requirements.txt & alembic upgrade head
+          - name: install requirements
+            run: pip install -r requirements.txt 
+          - name: create bd
+            run: alembic upgrade head
