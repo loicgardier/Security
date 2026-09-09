@@ -30,4 +30,6 @@ jobs:
           - name: create bd
             run: alembic upgrade head
           - name: run python
-            run: python main.py
+            run: python main.py &
+          - name: test api
+            run: curl -X GET --url localhost:8000/docs
