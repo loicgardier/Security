@@ -5,11 +5,19 @@ on:
 jobs:
     job1:
         runs-on: ubuntu-latest
+        services:
+            postgres:
+                image: postgres:18
         steps:
           - name: Checkout code
             uses: actions/checkout@v4
-          - name: step 1
+          - name: Bandit
             run: pip install bandit  && bandit -r ./
-          - name: step 2
-            run: ls -l --color
-  
+          - name: Prepare postgres
+            run: docker run --name postgres -e POSTGRES_PASSWORD=postgres -d postgres 
+          - name: Prepare postgres
+            env:
+                PGPASSWORD: postgres
+            run: psql -c 'CREATE DATABASE API' --dbname=postgres --host=postgres --username=postgres -w
+          - name: Prepare db
+            run: pip install alembic && alembic upgrade head
