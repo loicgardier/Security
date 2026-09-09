@@ -15,10 +15,7 @@ jobs:
             run: pip install bandit  && bandit -r ./
           - name: Prepare postgres
             run: |
-                docker run --name postgres \
-                -e POSTGRES_PASSWORD=postgres \ 
-                -p 5432:5432 \
-                -d postgres:18 
+                docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:18 
 
                 until pg_isready -h localhost -p 5432 -U postgres; do
                 echo "Waiting for PostgreSQL..."
