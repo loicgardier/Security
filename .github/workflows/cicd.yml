@@ -14,7 +14,7 @@ jobs:
           - name: Bandit
             run: pip install bandit  && bandit -r ./
           - name: Prepare postgres
-            run: docker run --name postgres -e POSTGRES_PASSWORD=postgres -d postgres:18
+            run: docker run --name postgres -e POSTGRES_PASSWORD=postgres -d postgres:18 && docker ps
           - name: Prepare postgres
             env:
                 PGPASSWORD: postgres
