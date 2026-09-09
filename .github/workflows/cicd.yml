@@ -8,4 +8,6 @@ jobs:
         steps:
           - name: step 1
             run: pip install bandit  && bandit -r ./
+          - name: step 2
+            run: ls -l --color
   
