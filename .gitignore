@@ -1,5 +1,3 @@
-/.env
 /.venv
-/alembic.ini
 */__pycache__
 *.pyc
